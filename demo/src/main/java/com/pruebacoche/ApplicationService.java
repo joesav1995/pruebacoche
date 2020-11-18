@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ApplicationService {
@@ -16,23 +18,59 @@ public class ApplicationService {
     private CocheRepository cocheRepository;
 
     public List<Coche> getCoches() {
+
         return cocheRepository.findAll();
     }
 
-    public Coche getCocheById(Long idCoche) {
-        if(cocheRepository.findById(idCoche).isPresent()) {
-            return cocheRepository.findById(idCoche).get();
+    public Map<String, String> getMarcas() {
+        return cocheRepository.findMarca();
+    }
+
+    public Map<String, String> getMarcasv2() {
+        Map<String, String> marcaMatricula = new HashMap<>();
+        cocheRepository.findAll().stream().forEach(coche -> {
+            marcaMatricula.put(coche.getMarca(), coche.getMatricula());
+        });
+        return marcaMatricula;
+    }
+
+    public List<Coche> getCochesFechaVenta() {
+        if (cocheRepository.findByVendidoOrderByFechaVentaDesc(false).size() > 0) {
+            return cocheRepository.findByVendidoOrderByFechaVentaDesc(false);
         }
         return null;
     }
 
+    public List<Coche> getCochesFechaIngreso() {
+        if (cocheRepository.findByVendidoOrderByFechaVentaDesc(false).size() > 0) {
+            return cocheRepository.findByVendidoOrderByFechaIngresoDesc(false);
+        }
+        return null;
+    }
+
+    public List<Coche> getCochesVendidos() {
+        if (cocheRepository.findByVendidoOrderByFechaVentaDesc(true).size() > 0) {
+            return cocheRepository.findByVendidoOrderByFechaVentaDesc(true);
+        }
+        //cocheRepository.findAll().get(0).getMarca();
+        return null;
+    }
+
+    public Coche getCocheByDireccion(String idCoche) {
+        if (cocheRepository.findById(idCoche).isPresent()) {
+            return cocheRepository.findById(idCoche).get();
+        }
+
+        return null;
+    }
+
     public Coche addCoche(CocheRequest cocheRequest) {
-        Coche coche = new Coche(cocheRequest.getMarca(), cocheRequest.getCoste(),cocheRequest.getModelo(), cocheRequest.getFechaVenta(), cocheRequest.getFechaIngreso(),cocheRequest.getVendido(),cocheRequest.getMatricula(),cocheRequest.getPreciVenta());
+        Coche coche = new Coche(cocheRequest.getDireccion(), cocheRequest.getMarca(), cocheRequest.getCoste(), cocheRequest.getFechaIngreso(), cocheRequest.getVendido(), cocheRequest.getMatricula(), cocheRequest.getPreciVenta());
         return cocheRepository.save(coche);
     }
 
-    public Coche addVariosCoches(String marca, Double coste, String modelo, Date fechaVenta, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
-        Coche coche = new Coche(marca, coste, modelo, fechaVenta, fechaIngreso, vendido, matricula, preciVenta);
+    public Coche addVariosCoches(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
+        Coche coche = new Coche(direccion, marca, coste, fechaIngreso, vendido, matricula, preciVenta);
         return cocheRepository.save(coche);
     }
 }

@@ -1,8 +1,7 @@
 package com.pruebacoche.coche;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -10,8 +9,9 @@ import java.util.Date;
 public class Coche {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(nullable = false)
+    private String direccion;
 
     private String marca;
     private Double coste;
@@ -29,19 +29,20 @@ public class Coche {
 
     }
 
-    public Coche(String marca, Double coste, String modelo, Date fechaVenta, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
+    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
+        this.direccion = direccion;
         this.marca = marca;
         this.coste = coste;
-        this.modelo = modelo;
-        this.fechaVenta = fechaVenta;
+
+        this.fechaVenta = null;
         this.fechaIngreso = fechaIngreso;
         this.vendido = vendido;
         this.matricula = matricula;
         this.preciVenta = preciVenta;
     }
 
-    public Long getId() {
-        return id;
+    public String getDireccion() {
+        return direccion;
     }
 
     public String getMarca() {
@@ -52,13 +53,6 @@ public class Coche {
         this.marca = marca;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
 
     public Double getCoste() {
         return coste;

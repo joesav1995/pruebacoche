@@ -6,10 +6,10 @@ public class CocheRequest {
 
 
 
-
+    private String direccion;
     private String marca;
     private Double coste;
-    private String modelo;
+
     private Date fechaVenta;
     private Date fechaIngreso;
     private Boolean vendido;
@@ -20,6 +20,13 @@ public class CocheRequest {
 
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
     public String getMarca() {
         return marca;
@@ -29,13 +36,7 @@ public class CocheRequest {
         this.marca = marca;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
 
     public Double getCoste() {
         return coste;
