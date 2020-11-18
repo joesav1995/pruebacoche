@@ -1,19 +1,32 @@
 package com.pruebacoche.coche;
 
+import java.util.Date;
+
 public class CocheRequest {
 
 
+
+    private String direccion;
     private String marca;
+    private Double coste;
 
-    private String modelo;
-
-    //caballos coche
-    private Integer cv;
+    private Date fechaVenta;
+    private Date fechaIngreso;
+    private Boolean vendido;
+    private String matricula;
+    private Double preciVenta;
 
     public CocheRequest(){
 
     }
 
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
     public String getMarca() {
         return marca;
@@ -23,19 +36,53 @@ public class CocheRequest {
         this.marca = marca;
     }
 
-    public String getModelo() {
-        return modelo;
+
+
+    public Double getCoste() {
+        return coste;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setCoste(Double coste) {
+        this.coste = coste;
     }
 
-    public Integer getCv() {
-        return cv;
+    public Date getFechaVenta() {
+        return fechaVenta;
     }
 
-    public void setCv(Integer cv) {
-        this.cv = cv;
+    public void setFechaVenta(Date fechaVenta) {
+        this.fechaVenta = fechaVenta;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Boolean getVendido() {
+        return vendido;
+    }
+
+    public void setVendido(Boolean vendido) {
+        this.vendido = vendido;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
+    public Double getPreciVenta() {
+        return preciVenta;
+    }
+
+    public void setPreciVenta(Double preciVenta) {
+        this.preciVenta = preciVenta;
     }
 }
