@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "e77294af-7c44-4043-8487-17f51ac75950",
+		"name": "pruebacoche",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "coche",
+			"item": [
+				{
+					"name": "ver un coche (by id)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/coche/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coche",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "añadir coche",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"marca\": \"seat\",\r\n    \"modelo\": \"ibiza\",\r\n    \"cv\": 150\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/coche",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coche"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ver todos los coches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/coche",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"coche"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "concesionario",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "325153de-b987-4b77-93ef-a6d48b757484",
+			"key": "{{baseUrl}}",
+			"value": "localhost:8080"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
