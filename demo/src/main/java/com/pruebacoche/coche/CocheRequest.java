@@ -1,12 +1,11 @@
 package com.pruebacoche.coche;
 
-import com.sun.istack.NotNull;
-
 import java.util.Date;
 
 public class CocheRequest {
 
-    @NotNull
+
+
     private String direccion;
     private String marca;
     private Double coste;
