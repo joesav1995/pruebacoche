@@ -5,6 +5,7 @@ import com.pruebacoche.coche.CocheRepository;
 import com.pruebacoche.coche.CocheRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -65,12 +66,26 @@ public class ApplicationService {
     }
 
     public Coche addCoche(CocheRequest cocheRequest) {
-        Coche coche = new Coche(cocheRequest.getDireccion(), cocheRequest.getMarca(), cocheRequest.getCoste(), cocheRequest.getFechaIngreso(), cocheRequest.getVendido(), cocheRequest.getMatricula(), cocheRequest.getPreciVenta());
+        Coche coche = new Coche(cocheRequest.getDireccion(), cocheRequest.getMarca(), cocheRequest.getCoste(), cocheRequest.getFechaIngreso(), cocheRequest.getVendido(), cocheRequest.getMatricula());
         return cocheRepository.save(coche);
     }
 
-    public Coche addVariosCoches(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
-        Coche coche = new Coche(direccion, marca, coste, fechaIngreso, vendido, matricula, preciVenta);
+    public Coche addVariosCoches(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula) {
+        Coche coche = new Coche(direccion, marca, coste, fechaIngreso, vendido, matricula);
         return cocheRepository.save(coche);
+    }
+    public Coche matricularCoche(CocheRequest cocheRequest) {
+        if (cocheRepository.findByDireccion(cocheRequest.getDireccion()).isPresent()){
+            Coche cotxe=cocheRepository.findByDireccion(cocheRequest.getDireccion()).get();
+            if (cotxe.getVendido().equals(false)) {
+                cotxe.setMatricula(cocheRequest.getMatricula());
+                cotxe.setPrecioVenta(cocheRequest.getPreciVenta());
+                cotxe.setVendido(true);
+                return cocheRepository.save(cotxe);
+            }else{
+                //no se puede comprar coche que ya esta vendido
+            }
+        }
+        return null;
     }
 }

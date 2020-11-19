@@ -20,7 +20,7 @@ public class Coche {
     private Date fechaIngreso;
     private Boolean vendido;
     private String matricula;
-    private Double preciVenta;
+    private Double precioVenta;
 
 
 
@@ -29,7 +29,7 @@ public class Coche {
 
     }
 
-    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
+    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula) {
         this.direccion = direccion;
         this.marca = marca;
         this.coste = coste;
@@ -38,7 +38,7 @@ public class Coche {
         this.fechaIngreso = fechaIngreso;
         this.vendido = vendido;
         this.matricula = matricula;
-        this.preciVenta = preciVenta;
+        this.precioVenta=null;
     }
 
     public String getDireccion() {
@@ -94,11 +94,11 @@ public class Coche {
         this.matricula = matricula;
     }
 
-    public Double getPreciVenta() {
-        return preciVenta;
+    public Double getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPreciVenta(Double preciVenta) {
-        this.preciVenta = preciVenta;
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 }
