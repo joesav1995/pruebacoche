@@ -36,7 +36,7 @@ public class CocheController {
     //get 1 coche
     @RequestMapping(value = "/{idCoche}", method = RequestMethod.GET)
     public @ResponseBody
-    Coche getCOcheById(@PathVariable("idCoche") String id) {
+    Coche getCocheByDireccion(@PathVariable("idCoche") String id) {
         if (applicationService.getCocheByDireccion(id) != null) {
             return applicationService.getCocheByDireccion(id);
         }
@@ -81,10 +81,10 @@ public class CocheController {
         }
 
 
-        applicationService.addVariosCoches("alfa-romeo-gasolina-familiar-2009","Alfa Romeo", 18000.0, fechaIngreso1, false, null, 18000.0);
-        applicationService.addVariosCoches("audi-a3-gasolina-sport-2015","Audi", 17000.0, fechaIngreso2, false, null, 15000.0);
-        applicationService.addVariosCoches("bmw-x2-diesel-coupe-2017","BMW", 16000.0, fechaIngreso3, true, null, 17000.0);
-        applicationService.addVariosCoches("cupra-ateca-diesel-2020","Cupra", 15000.0, fechaIngreso4, false, null, 16000.0);
+        applicationService.addVariosCoches("alfa-romeo-gasolina-familiar-2009","Alfa Romeo", 18000.0, fechaIngreso1, false, null);
+        applicationService.addVariosCoches("audi-a3-gasolina-sport-2015","Audi", 17000.0, fechaIngreso2, false, null);
+        applicationService.addVariosCoches("bmw-x2-diesel-coupe-2017","BMW", 16000.0, fechaIngreso3, true, null);
+        applicationService.addVariosCoches("cupra-ateca-diesel-2020","Cupra", 15000.0, fechaIngreso4, false, null);
 
         return applicationService.getCoches();
     }
@@ -107,6 +107,11 @@ public class CocheController {
     public @ResponseBody
     Map<String,String> getMarcasv2() {
         return applicationService.getMarcasv2();
+    }
+
+    @RequestMapping(value = "/matricularCoche", method = RequestMethod.POST)
+    public @ResponseBody Coche matricularCoche(@RequestBody CocheRequest cocheRequest) {
+        return applicationService.matricularCoche(cocheRequest);
     }
 
 }
