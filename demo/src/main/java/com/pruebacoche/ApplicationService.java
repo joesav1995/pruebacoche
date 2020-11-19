@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -75,12 +76,24 @@ public class ApplicationService {
         return cocheRepository.save(coche);
     }
     public Coche matricularCoche(CocheRequest cocheRequest) {
+        Date fecha = new Date();
+
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        try {
+            fecha = formato.parse(formato.format(fecha));
+
+
+        } catch (Exception e) {
+
+        }
         if (cocheRepository.findByDireccion(cocheRequest.getDireccion()).isPresent()){
             Coche cotxe=cocheRepository.findByDireccion(cocheRequest.getDireccion()).get();
             if (cotxe.getVendido().equals(false)) {
                 cotxe.setMatricula(cocheRequest.getMatricula());
-                cotxe.setPrecioVenta(cocheRequest.getPreciVenta());
+                cotxe.setPrecioVenta(cocheRequest.getPrecioVenta());
                 cotxe.setVendido(true);
+                cotxe.setFechaVenta(fecha);
                 return cocheRepository.save(cotxe);
             }else{
                 //no se puede comprar coche que ya esta vendido

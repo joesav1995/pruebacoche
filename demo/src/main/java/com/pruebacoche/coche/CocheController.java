@@ -34,7 +34,7 @@ public class CocheController {
     }
 
     //get 1 coche
-    @RequestMapping(value = "/{idCoche}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{direccion}", method = RequestMethod.GET)
     public @ResponseBody
     Coche getCocheByDireccion(@PathVariable("direccion") String direccion) {
         if (applicationService.getCocheByDireccion(direccion) != null) {

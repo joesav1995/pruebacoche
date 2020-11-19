@@ -14,7 +14,7 @@ public class CocheRequest {
     private Date fechaIngreso;
     private Boolean vendido;
     private String matricula;
-    private Double preciVenta;
+    private Double precioVenta;
 
     public CocheRequest(){
 
@@ -78,11 +78,11 @@ public class CocheRequest {
         this.matricula = matricula;
     }
 
-    public Double getPreciVenta() {
-        return preciVenta;
+    public Double getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPreciVenta(Double preciVenta) {
-        this.preciVenta = preciVenta;
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 }
