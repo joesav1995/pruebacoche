@@ -2,7 +2,10 @@ package com.pruebacoche.coche;
 
 import com.pruebacoche.ApplicationService;
 import com.pruebacoche.concesionario.BeneficiosResponse;
+import com.pruebacoche.excepciones.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -124,7 +127,13 @@ public class CocheController {
     }
 
     @RequestMapping(value = "/verBeneficios", method = RequestMethod.GET)
-    public @ResponseBody BeneficiosResponse verBeneficios() {
-        return new BeneficiosResponse(applicationService.verBeneficios());
+    public @ResponseBody
+    ResponseEntity<BeneficiosResponse> verBeneficios() {
+        if(applicationService.verBeneficios()==0) {
+            return new ResponseEntity<>(new BeneficiosResponse(applicationService.verBeneficios()), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

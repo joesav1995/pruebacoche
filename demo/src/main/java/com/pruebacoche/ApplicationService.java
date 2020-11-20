@@ -125,7 +125,7 @@ public class ApplicationService {
         }
     }
 
-    public Double verBeneficios(){
+    public Double verBeneficios() {
 
         if (cocheRepository.findByVendidoTrue().size() > 0) {
             return cocheRepository.findByVendidoTrue().stream().mapToDouble(coche -> (coche.getPrecioVenta() - coche.getCoste())).sum();
