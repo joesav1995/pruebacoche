@@ -1,19 +1,26 @@
 package com.pruebacoche.coche;
 
+
+import javax.validation.constraints.*;
 import java.util.Date;
-import com.sun.istack.NotNull;
 public class CocheRequest {
 
-
-    @NotNull
+    private Long id;
+    @NotNull(message = "Direccion puede no puese estar vacio.")
     private String direccion;
+
+    @NotNull(message = "Marca no puede estar vacio.")
     private String marca;
+
+    @NotNull(message = "Coste no puede estar vacio.")
     private Double coste;
 
     private Date fechaVenta;
+
     private Date fechaIngreso;
+
     private Boolean vendido;
-    private String matricula;
+
     private Double precioVenta;
 
     public CocheRequest(){
@@ -70,19 +77,15 @@ public class CocheRequest {
         this.vendido = vendido;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
     public Double getPrecioVenta() {
         return precioVenta;
     }
 
     public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

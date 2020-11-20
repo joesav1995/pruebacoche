@@ -1,4 +1,4 @@
-package com.pruebacoche.Concesionario;
+package com.pruebacoche.concesionario;
 
 import com.pruebacoche.coche.Coche;
 
