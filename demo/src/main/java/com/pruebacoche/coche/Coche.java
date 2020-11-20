@@ -1,26 +1,25 @@
 package com.pruebacoche.coche;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Coche {
 
     @Id
-//    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
     @Column(nullable = false)
     private String direccion;
 
     private String marca;
     private Double coste;
-    private String modelo;
+
     private Date fechaVenta;
     private Date fechaIngreso;
     private Boolean vendido;
     private String matricula;
-    private Double preciVenta;
+    private Double precioVenta;
 
 
 
@@ -29,7 +28,7 @@ public class Coche {
 
     }
 
-    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido, String matricula, Double preciVenta) {
+    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido) {
         this.direccion = direccion;
         this.marca = marca;
         this.coste = coste;
@@ -37,8 +36,7 @@ public class Coche {
         this.fechaVenta = null;
         this.fechaIngreso = fechaIngreso;
         this.vendido = vendido;
-        this.matricula = matricula;
-        this.preciVenta = preciVenta;
+        this.precioVenta=null;
     }
 
     public String getDireccion() {
@@ -94,11 +92,15 @@ public class Coche {
         this.matricula = matricula;
     }
 
-    public Double getPreciVenta() {
-        return preciVenta;
+    public Double getPrecioVenta() {
+        return precioVenta;
     }
 
-    public void setPreciVenta(Double preciVenta) {
-        this.preciVenta = preciVenta;
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

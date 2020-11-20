@@ -1,9 +1,14 @@
 package com.pruebacoche.coche;
 
 import com.pruebacoche.ApplicationService;
+import com.pruebacoche.concesionario.BeneficiosResponse;
+import com.pruebacoche.excepciones.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -34,11 +39,11 @@ public class CocheController {
     }
 
     //get 1 coche
-    @RequestMapping(value = "/{idCoche}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{marca}", method = RequestMethod.GET)
     public @ResponseBody
-    Coche getCOcheById(@PathVariable("idCoche") String id) {
-        if (applicationService.getCocheByDireccion(id) != null) {
-            return applicationService.getCocheByDireccion(id);
+    Coche getCocheByDireccion(@PathVariable("marca") String marca) {
+        if (applicationService.getCocheById(marca) != null) {
+            return applicationService.getCocheById(marca);
         }
         return null;
     }
@@ -46,7 +51,7 @@ public class CocheController {
     //añadir coche
     @RequestMapping(value = "", method = RequestMethod.POST)
     public @ResponseBody
-    Coche addCoche(@RequestBody CocheRequest cocheRequest) {
+    Coche addCoche(@RequestBody @Valid CocheRequest cocheRequest) {
         return applicationService.addCoche(cocheRequest);
     }
 
@@ -81,10 +86,12 @@ public class CocheController {
         }
 
 
-        applicationService.addVariosCoches("alfa-romeo-gasolina-familiar-2009","Alfa Romeo", 18000.0, fechaIngreso1, false, null, 18000.0);
-        applicationService.addVariosCoches("audi-a3-gasolina-sport-2015","Audi", 17000.0, fechaIngreso2, false, null, 15000.0);
-        applicationService.addVariosCoches("bmw-x2-diesel-coupe-2017","BMW", 16000.0, fechaIngreso3, true, null, 17000.0);
-        applicationService.addVariosCoches("cupra-ateca-diesel-2020","Cupra", 15000.0, fechaIngreso4, false, null, 16000.0);
+        applicationService.addVariosCoches("alfa-romeo-gasolina-familiar-2009","Alfa Romeo", 18000.0, fechaIngreso1, false);
+        applicationService.addVariosCoches("audi-a3-gasolina-sport-2015","Audi", 17000.0, fechaIngreso2, false);
+        
+        applicationService.addVariosCoches("bmw-x2-diesel-coupe-2017","BMW", 16000.0, fechaIngreso3, false);
+
+        applicationService.addVariosCoches("cupra-ateca-diesel-2020","Cupra", 15000.0, fechaIngreso4, false);
 
         return applicationService.getCoches();
     }
@@ -98,7 +105,7 @@ public class CocheController {
         return applicationService.getCochesFechaIngreso();
     }
 
-    @RequestMapping(value = "/getMarcas", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/getMarcas", method = RequestMethod.GET)
     public @ResponseBody Map<String,String> getMarcas() {
         return applicationService.getMarcas();
     }
@@ -107,6 +114,26 @@ public class CocheController {
     public @ResponseBody
     Map<String,String> getMarcasv2() {
         return applicationService.getMarcasv2();
+    }*/
+
+    @RequestMapping(value = "/matricularCoche", method = RequestMethod.POST)
+    public @ResponseBody Coche matricularCoche(@RequestBody @Valid MatriculaRequest matriculaRequest) {
+        return applicationService.matricularCoche(matriculaRequest);
     }
 
+    @RequestMapping(value = "/eliminarCoche/{marca}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("marca") String marca) {
+        applicationService.deleteCoche(marca);
+    }
+
+    @RequestMapping(value = "/verBeneficios", method = RequestMethod.GET)
+    public @ResponseBody
+    ResponseEntity<BeneficiosResponse> verBeneficios() {
+        if(applicationService.verBeneficios()==0) {
+            return new ResponseEntity<>(new BeneficiosResponse(applicationService.verBeneficios()), HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
 }
