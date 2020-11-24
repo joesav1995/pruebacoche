@@ -1,5 +1,7 @@
 package com.pruebacoche.coche;
 
+import com.pruebacoche.concesionario.Concesionario;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,9 +11,8 @@ public class Coche {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String direccion;
 
+    @Column(nullable = false, unique=true)
     private String marca;
     private Double coste;
 
@@ -22,14 +23,11 @@ public class Coche {
     private Double precioVenta;
 
 
-
-
     public Coche(){
 
     }
 
-    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido) {
-        this.direccion = direccion;
+    public Coche( String marca, Double coste, Date fechaIngreso, Boolean vendido) {
         this.marca = marca;
         this.coste = coste;
 
@@ -39,9 +37,7 @@ public class Coche {
         this.precioVenta=null;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
+
 
     public String getMarca() {
         return marca;
@@ -102,5 +98,21 @@ public class Coche {
 
     public Long getId() {
         return id;
+    }
+
+
+    //para debugar con logger
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "id=" + id +
+                ", marca='" + marca + '\'' +
+                ", coste=" + coste +
+                ", fechaVenta=" + fechaVenta +
+                ", fechaIngreso=" + fechaIngreso +
+                ", vendido=" + vendido +
+                ", matricula='" + matricula + '\'' +
+                ", precioVenta=" + precioVenta +
+                '}';
     }
 }
