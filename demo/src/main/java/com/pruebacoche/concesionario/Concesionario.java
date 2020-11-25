@@ -10,15 +10,15 @@ import java.util.List;
 public class Concesionario {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false, unique=true)
+    @Column(nullable = false, unique = true)
     private String direccion;
-
     @OneToMany(cascade = CascadeType.ALL)
     private List<Coche> coches;
 
-    public Concesionario() {}
+    public Concesionario() {
+    }
 
     public Concesionario(String direccion) {
         this.direccion = direccion;
@@ -43,15 +43,5 @@ public class Concesionario {
 
     public void setCoches(List<Coche> coches) {
         this.coches = coches;
-    }
-
-    //para debugar con logger
-    @Override
-    public String toString() {
-        return "Concesionario{" +
-                "id=" + id +
-                ", direccion='" + direccion + '\'' +
-                ", coches=" + coches +
-                '}';
     }
 }

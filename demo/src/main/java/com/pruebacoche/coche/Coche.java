@@ -1,7 +1,5 @@
 package com.pruebacoche.coche;
 
-import com.pruebacoche.concesionario.Concesionario;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -9,35 +7,39 @@ import java.util.Date;
 public class Coche {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique=true)
+    @Column(nullable = false, unique = true)
     private String marca;
     private Double coste;
-
     private Date fechaVenta;
     private Date fechaIngreso;
     private Boolean vendido;
     private String matricula;
     private Double precioVenta;
 
-
-    public Coche(){
+    public Coche() {
 
     }
 
-    public Coche( String marca, Double coste, Date fechaIngreso, Boolean vendido) {
+    public Coche(String marca, Double coste, Date fechaIngreso, Boolean vendido) {
         this.marca = marca;
         this.coste = coste;
-
         this.fechaVenta = null;
         this.fechaIngreso = fechaIngreso;
         this.vendido = vendido;
-        this.precioVenta=null;
+        this.precioVenta = null;
     }
 
-
+    public Coche(String marca, Double coste, Date fechaVenta, Date fechaIngreso, Boolean vendido, String matricula, Double precioVenta) {
+        this.marca = marca;
+        this.coste = coste;
+        this.fechaVenta = fechaVenta;
+        this.fechaIngreso = fechaIngreso;
+        this.vendido = vendido;
+        this.matricula = matricula;
+        this.precioVenta = precioVenta;
+    }
 
     public String getMarca() {
         return marca;
@@ -46,7 +48,6 @@ public class Coche {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
 
     public Double getCoste() {
         return coste;
@@ -98,21 +99,5 @@ public class Coche {
 
     public Long getId() {
         return id;
-    }
-
-
-    //para debugar con logger
-    @Override
-    public String toString() {
-        return "Coche{" +
-                "id=" + id +
-                ", marca='" + marca + '\'' +
-                ", coste=" + coste +
-                ", fechaVenta=" + fechaVenta +
-                ", fechaIngreso=" + fechaIngreso +
-                ", vendido=" + vendido +
-                ", matricula='" + matricula + '\'' +
-                ", precioVenta=" + precioVenta +
-                '}';
     }
 }

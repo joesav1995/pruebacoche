@@ -1,29 +1,23 @@
 package com.pruebacoche.coche;
 
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
+
 public class CocheRequest {
 
     private Long id;
     @NotNull(message = "Direccion puede no puese estar vacio.")
     private String direccion;
-
     @NotNull(message = "Marca no puede estar vacio.")
     private String marca;
-
     @NotNull(message = "Coste no puede estar vacio.")
     private Double coste;
-
     private Date fechaVenta;
-
     private Date fechaIngreso;
-
     private Boolean vendido;
-
     private Double precioVenta;
 
-    public CocheRequest(){
+    public CocheRequest() {
 
     }
 
@@ -42,8 +36,6 @@ public class CocheRequest {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
-
 
     public Double getCoste() {
         return coste;
