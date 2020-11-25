@@ -7,40 +7,38 @@ import java.util.Date;
 public class Coche {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String direccion;
-
+    @Column(nullable = false, unique = true)
     private String marca;
     private Double coste;
-
     private Date fechaVenta;
     private Date fechaIngreso;
     private Boolean vendido;
     private String matricula;
     private Double precioVenta;
 
-
-
-
-    public Coche(){
+    public Coche() {
 
     }
 
-    public Coche(String direccion, String marca, Double coste, Date fechaIngreso, Boolean vendido) {
-        this.direccion = direccion;
+    public Coche(String marca, Double coste, Date fechaIngreso, Boolean vendido) {
         this.marca = marca;
         this.coste = coste;
-
         this.fechaVenta = null;
         this.fechaIngreso = fechaIngreso;
         this.vendido = vendido;
-        this.precioVenta=null;
+        this.precioVenta = null;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public Coche(String marca, Double coste, Date fechaVenta, Date fechaIngreso, Boolean vendido, String matricula, Double precioVenta) {
+        this.marca = marca;
+        this.coste = coste;
+        this.fechaVenta = fechaVenta;
+        this.fechaIngreso = fechaIngreso;
+        this.vendido = vendido;
+        this.matricula = matricula;
+        this.precioVenta = precioVenta;
     }
 
     public String getMarca() {
@@ -50,7 +48,6 @@ public class Coche {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
 
     public Double getCoste() {
         return coste;

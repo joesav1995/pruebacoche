@@ -7,11 +7,9 @@ public class BeneficiosResponse {
     public BeneficiosResponse(Double beneficios) {
         this.beneficios = beneficios;
     }
-
     public Double getBeneficios() {
         return beneficios;
     }
-
     public void setBeneficios(Double beneficios) {
         this.beneficios = beneficios;
     }

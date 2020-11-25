@@ -6,20 +6,18 @@ import javax.validation.constraints.Size;
 
 public class MatriculaRequest {
 
-
     @NotBlank(message = "Direccion puede no puese estar vacio.")
     private String direccion;
-
     @NotBlank(message = "Matricula puede no puese estar vacio.")
     @Size(min = 7, max = 7)
     private String matricula;
     @NotBlank(message = "Marca no puede estar vacio.")
     private String marca;
-
     @NotNull
     private Double precioVenta;
 
-    public MatriculaRequest(){}
+    public MatriculaRequest() {
+    }
 
     public String getDireccion() {
         return direccion;
